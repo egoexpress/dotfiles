@@ -1,0 +1,5 @@
+[user]
+        name = Björn Stierand
+        email = bjoern-github@innovention.de
+[credential]
+        helper = cache
