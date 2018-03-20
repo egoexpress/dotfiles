@@ -1,1 +1,1 @@
-alias ll="ls -lAhL"
+alias reload!='. ~/.zshrc'

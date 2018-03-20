@@ -3,7 +3,7 @@
 # TODO: check if curl is installed
 
 # make sure zsh is installed
-which zsh &>/dev/null || apt-get -y install zsh
+if (( ! $+commands[zsh] )) apt-get -y install zsh
 
 # install oh-my-zsh
 [ -d ~/.oh-my-zsh ] || {
