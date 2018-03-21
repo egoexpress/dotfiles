@@ -20,3 +20,5 @@ _load_kckey() {
     }
   }
 }
+
+alias ssha='eval `ssh-agent` && ssh-add'

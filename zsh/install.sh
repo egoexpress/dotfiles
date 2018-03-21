@@ -10,4 +10,3 @@ if (( ! $+commands[zsh] )) apt-get -y install zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   rm ~/.zshrc.pre-oh-my-zsh
 }
-

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/zsh
 #
 # dot
 #
@@ -42,10 +42,13 @@ export ZSH=$HOME/.dotfiles
 # Install homebrew
 # $ZSH/homebrew/install.sh 2>&1
 
-# Upgrade homebrew
-echo "› brew update"
-brew update
+echo "› update environment and system"
+. $ZSH/debian/aliases.zsh
+update
 
 # Install software
-echo "› .dotfiles/scripts/install"
+echo "› running install scripts"
 ${dotfilesDirectory}/dotfiles/scripts/install
+echo "› done"
+
+. ~/.zshrc
