@@ -48,7 +48,7 @@ update
 
 # Install software
 echo "› running install scripts"
-${dotfilesDirectory}/dotfiles/scripts/install
+${dotfilesDirectory}/dotfiles/bin/install
 echo "› done"
 
 . ~/.zshrc

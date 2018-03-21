@@ -16,7 +16,7 @@ Everything's built around topic areas. If you're adding a new area to your
 forked dotfiles — say, "Java" — you can simply add a `java` directory and put
 files in there. Anything with an extension of `.zsh` will get automatically
 included into your shell. Anything with an extension of `.symlink` will get
-symlinked without extension into `$HOME` when you run `dotfiles/scripts/bootstrap`.
+symlinked without extension into `$HOME` when you run `dotfiles/bin/bootstrap`.
 
 ## Components
 
@@ -29,18 +29,18 @@ There's a few special files in the hierarchy.
 - **topic/completion.zsh**: Any file named `completion.zsh` is loaded
   last and is expected to setup autocomplete.
 - **topic/install.sh**: Any file named `install.sh` is executed when you 
-  run `dotfiles/scripts/install`. 
+  run `dotfiles/bin/install`. 
   To avoid being loaded automatically, its extension is `.sh`, not `.zsh`.
 - **topic/\*.symlink**: Any file ending in `*.symlink` gets symlinked into
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
   but still keep those autoloaded files in your home directory. These get
-  symlinked in when you run `dotfiles/scripts/bootstrap`.
+  symlinked in when you run `dotfiles/bin/bootstrap`.
 
 ## Private Information
 
 To handle private information a separate filesystem hierarchy under
 `~/.private` was introduced. You can place `.zsh` files which are loaded
-through `dotfiles/scripts/install` as well. The `.symlink` function
+through `dotfiles/bin/install` as well. The `.symlink` function
 works here as well.
 
 I also introduced a `.relative` naming scheme to mix in configuration files
@@ -61,7 +61,7 @@ Run this:
 ```sh
 git clone https://github.com/egoexpress/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-dotfiles/scripts/bootstrap
+dotfiles/bin/bootstrap
 ```
 
 This will symlink the appropriate files in `.dotfiles` to your home directory.

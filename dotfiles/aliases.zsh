@@ -1,1 +1,1 @@
-alias boot="$HOME/.dotfiles/dotfiles/scripts/bootstrap"
+alias boot="$HOME/.dotfiles/dotfiles/bin/bootstrap"
