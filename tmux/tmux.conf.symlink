@@ -1,0 +1,62 @@
+# use zsh as default
+set -g default-command zsh
+
+# set default terminal
+set -g default-terminal "screen-256color"
+
+# use C-a as additional prefix
+set -g prefix2 C-a
+bind C-a send-prefix -2
+
+# set scrollback history to 10000 (10k)
+set -g history-limit 10000
+
+# shorten command delay
+set -sg escape-time 0
+
+# set window and pane index to 1 (0 by default)
+set-option -g base-index 1
+setw -g pane-base-index 1
+
+# reload ~/.tmux.conf using PREFIX r
+bind r source-file ~/.tmux.conf \; display "reloaded!"
+
+# use PREFIX | to split window horizontally and PREFIX - to split vertically
+bind | split-window -h
+bind - split-window -v
+
+# map Vi movement keys as pane movement keys
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# automatic rename windows
+setw -g automatic-rename on
+
+# use vi bindings in copy mode
+setw -g mode-keys vi
+
+# move windows with cursor keys
+bind-key Left swap-window -t -1
+bind-key Right swap-window -t +1
+
+# visual notification of activity in other windows
+setw -g monitor-activity on
+set -g visual-activity on
+
+# renumber windows on close
+set-option -g renumber-windows on
+
+# smart pane switching with awareness of vim splits
+bind -n C-h run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-h) || tmux select-pane -L"
+bind -n C-j run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-j) || tmux select-pane -D"
+bind -n C-k run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-k) || tmux select-pane -U"
+#bind -n C-l run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys C-l) || tmux select-pane -R"
+bind -n C-\ run "(tmux display-message -p '#{pane_current_command}' | grep -iq vim && tmux send-keys 'C-\\') || tmux select-pane -l"
+
+# load tmuxline settings
+source "$HOME/.tmux/tmuxline.conf"
+
+# disable auto-rename
+bind R set-option -g allow-rename off
