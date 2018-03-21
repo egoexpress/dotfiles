@@ -1,3 +1,3 @@
-cd $HOME/.dotfiles &>/dev/null
+cd $HOME/.dotfiles/brew
 brew bundle
 cd - &>/dev/null
