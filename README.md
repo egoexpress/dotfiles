@@ -7,6 +7,8 @@ Check out this project to learn more about the philosophy behind it.
 I changed some minor facts and took the bits from the original project that I liked.
 I then added oh-my-zsh on top of it (because that's the zsh environment I'm used too),
 so we now have some kind of Frankenstein zsh monster. :)
+A method to better handle private data (within a separate `~/.private` repository)
+was added as well.
 
 ## Topics
 
@@ -33,6 +35,24 @@ There's a few special files in the hierarchy.
   your `$HOME`. This is so you can keep all of those versioned in your dotfiles
   but still keep those autoloaded files in your home directory. These get
   symlinked in when you run `dotfiles/scripts/bootstrap`.
+
+## Private Information
+
+To handle private information a separate filesystem hierarchy under
+`~/.private` was introduced. You can place `.zsh` files which are loaded
+through `dotfiles/scripts/install` as well. The `.symlink` function
+works here as well.
+
+I also introduced a `.relative` naming scheme to mix in configuration files
+with private information. So, if you e.g. use WeeChat, some configuration
+files contain private information you don't want to have in a public repo.
+So you can split the `.weechat` dir as following:
+
+- **~/.dotfiles/weechat/weechat.symlink** contains all the files without
+  private infos. This dir will be linked at `~/.weechat`.
+- **~/.private/weechat/weechat.relative** contains all the other files
+  with private information. Symlinks in `~/.weechat` will be created
+  for each of these files.
 
 ## Install
 
