@@ -7,8 +7,7 @@
 
 set -e
 
-parentDirectory="$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P)"
-dotfilesDirectory="$(cd "$( dirname "$parentDirectory" )" && pwd -P)/../.."
+dotfilesDirectory="$HOME/.dotfiles"
 
 displayUsageAndExit() {
 	echo "dot -- dotfiles management"
@@ -48,5 +47,5 @@ echo "› brew update"
 brew update
 
 # Install software
-echo "› $ZSH/script/install"
-$ZSH/dotfiles/scripts/script/install
+echo "› .dotfiles/scripts/install"
+${dotfilesDirectory}/dotfiles/scripts/install
