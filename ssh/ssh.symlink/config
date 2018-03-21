@@ -1,0 +1,15 @@
+# .ssh/config
+# 
+# ssh client configuration
+
+# verify host keys using SSHFP DNS records
+VerifyHostKeyDNS yes
+
+# ask if key is not in known_hosts
+StrictHostKeyChecking ask
+
+KeepAlive yes
+ServerAliveInterval 60
+
+Include ~/.private/ssh/*
+
