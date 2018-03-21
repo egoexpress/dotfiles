@@ -1,0 +1,113 @@
+# ~/.screenrc
+
+# $Id: dot-screenrc 2 2006-03-12 13:09:58Z wonder $
+
+# screen configuration file
+# based on .screenrc of Nico Golde (http://www.ngolde.de/setup/screenrc)
+
+# ---------------------------------------------------------------------------
+# variables
+# ---------------------------------------------------------------------------
+defutf8               on
+nethack               on
+autodetach            on
+crlf                  off
+deflogin              off
+hardcopy_append       on
+startup_message       off
+vbell                 on
+defscrollback         1000
+silencewait           15
+shell                 zsh
+activity              "activity in %n (%t) [%w:%s]~"
+bell                  "%C -> %n%f %t activity!"
+vbell_msg             " *Fuck this bell ;-)* "
+
+# ---------------------------------------------------------------------------
+# keybindings
+# ---------------------------------------------------------------------------
+bind m screen -t 'mutt' 1 mutt
+bind e screen -t 'root shell' 1 sudo zsh
+
+# ---------------------------------------------------------------------------
+# termcap and terminfo
+# ---------------------------------------------------------------------------
+termcapinfo xterm "ve=\E[?25h\E[?17;0;64c"
+termcapinfo linux "ve=\E[?25h\E[?17;0;64c"
+
+# ---------------------------------------------------------------------------
+# bindings
+# ---------------------------------------------------------------------------
+# break       ^B b
+# clear       C
+# colon       :
+# copy        ^[ [
+# detach      ^D d
+# digraph     ^V
+# displays    *
+# dumptermcap .
+# flow        ^F f
+# focus       ^I
+# hardcopy    h
+# help        ?
+# history     { }
+# info        i
+# kill        K k
+# lastmsg     ^M m
+# license     ,
+# log         H
+# login       L
+# meta        x
+# monitor     M
+# next        ^@ ^N sp n
+# number      N
+# only        Q
+# other       ^X
+# pow_break   B
+# pow_detach  D
+# prev        ^H ^P p ^?
+# quit        \
+# readbuf     <
+# redisplay   ^L l
+# remove      X
+# removebuf   =
+# reset       Z
+# screen      ^C c
+# select      " '
+# silence     _
+# split       S
+# suspend     ^Z z
+# time        ^T t
+# title       A
+# vbell       ^G
+# version     v
+# width       W
+# windows     ^W w
+# wrap        ^R r
+# writebuf    >
+# xoff        ^S s
+# xon         ^Q q
+# ^]  paste .
+# -   select -
+# 0   select 0
+# 1   select 1
+# 2   select 2
+# 3   select 3
+# 4   select 4
+# 5   select 5
+# 6   select 6
+# 7   select 7
+# 8   select 8
+# 9   select 9
+# I   login on
+# O   login off
+# ]   paste .
+
+# ---------------------------------------------------------------------------
+# display settings
+# ---------------------------------------------------------------------------
+
+# screen heading caption
+caption always "%{wb} %{c}[%{w}%H - %Y/%m/%d %c%{c}]%{w} | %?%-Lw%?%{+b}[%n*%f %t]%{-b}%?(%u)%?%?%+Lw%?"
+
+# EOF  vim: ts=8 et nowrap

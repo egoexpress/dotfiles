@@ -1,0 +1,7 @@
+BoldAsFont=no
+CopyAsRTF=no
+RightClickAction=paste
+Term=xterm-256color
+Font=Inconsolata for Powerline
+FontSmoothing=default
+FontHeight=10

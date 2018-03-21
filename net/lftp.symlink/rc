@@ -1,0 +1,14 @@
+set ftp:ssl-force on
+set ftp:use-feat off
+set ssl:check-hostname no
+set ssl:verify-certificate no
+set ftp:ssl-protect-data yes
+set ftp:ssl-protect-list yes
+set ftp:ssl-protect-fxp yes
+
+alias dlnv mirror --ignore-time -L
+alias dl mirror --ignore-time -L -v
+alias q queue
+alias qa queue dlnv
+alias qs queue start
+alias ll ls -lrt
