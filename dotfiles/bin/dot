@@ -5,9 +5,9 @@
 # `dot` handles installation, updates, things like that. Run it periodically
 # to make sure you're on the latest and greatest.
 
-set -e
+# set -e
 
-dotfilesDirectory="$HOME/.dotfiles"
+export DOTFILES=$HOME/.dotfiles
 
 displayUsageAndExit() {
 	echo "dot -- dotfiles management"
@@ -26,7 +26,7 @@ while test $# -gt 0; do
 			displayUsageAndExit
 			;;
 		"-e"|"--edit")
-			exec "$EDITOR" "$dotfilesDirectory"
+			exec "$EDITOR" "$DOTFILES"
 			exit
 			;;
 		*)
@@ -37,18 +37,17 @@ while test $# -gt 0; do
 	shift
 done
 
-export ZSH=$HOME/.dotfiles
-
 # Install homebrew
-# $ZSH/homebrew/install.sh 2>&1
+$DOTFILES/brew/install.sh bootstrap
 
 echo "› update environment and system"
-. $ZSH/debian/aliases.zsh
+. $DOTFILES/debian/aliases.zsh
 update
 
 # Install software
 echo "› running install scripts"
-${dotfilesDirectory}/dotfiles/bin/install
-echo "› done"
+$DOTFILES/dotfiles/bin/install
+echo "› all install scripts finished"
 
 . ~/.zshrc
+echo "› environment reloaded"

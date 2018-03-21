@@ -3,10 +3,14 @@
 # TODO: check if curl is installed
 
 # make sure zsh is installed
-if (( ! $+commands[zsh] )) apt-get -y install zsh
+if (( ! $+commands[zsh] ))
+then
+  apt-get -y install zsh
+fi
 
 # install oh-my-zsh
-[ -d ~/.oh-my-zsh ] || {
+if [ ! -d ~/.oh-my-zsh ]
+then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   rm ~/.zshrc.pre-oh-my-zsh
-}
+fi

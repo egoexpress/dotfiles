@@ -19,9 +19,6 @@ DISABLE_AUTO_UPDATE="true"
 # display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$HOME/.dotfiles/zsh
-
 # oh-my-zsh plugins
 plugins=(
   git
@@ -47,16 +44,10 @@ plugins=(
   zsh-syntax-highlighting
 )
 
-source $ZSH/oh-my-zsh.sh
+. $ZSH/oh-my-zsh.sh >/dev/null 2>&1
 
 # path to dotfiles
-export DOTFILES=$HOME/.dotfiles
-
-# stash your local environment variables in ~/.localrc
-if [[ -a ~/.localrc ]]
-then
-  source ~/.localrc
-fi
+export DOTFILES="$HOME/.dotfiles"
 
 # get all zsh .dotfiles
 typeset -U config_files

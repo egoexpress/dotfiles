@@ -1,1 +1,6 @@
-which hub &>/dev/null || brew install hub
+#!/usr/bin/env zsh
+
+if (( ! $+commands[hub] ))
+then
+  brew install hub 
+fi
