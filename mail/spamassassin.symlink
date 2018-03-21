@@ -1,0 +1,18 @@
+required_hits 5
+report_safe 0
+whitelist_from nuzzel@mail.nuzzel.com
+whitelist_from buchhaltung@sobooks.de
+whitelist_from support@indiegogo.com
+whitelist_from review@hostelworld.com
+whitelist_from info@my.topbonus.de
+whitelist_from billing@vpn.sh
+whitelist_from noreply@onlinetvrecorder.com
+whitelist_from support@zwift.com
+whitelist_from hertznoreply@hertz.com
+whitelist_from noreply@dtu-info.de
+whitelist_from noreply@usepanda.com
+whitelist_from noreply@foursquare.com
+whitelist_from service@audible.de
+whitelist_from no_reply@mediamarkt.de
+
+score DATE_IN_FUTURE_06_12 5.699 0.002 4.444 3.894

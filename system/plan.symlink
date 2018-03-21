@@ -1,0 +1,17 @@
+#$ make Schweinebraten 
+Kitchen make 3.1.2 target Schweinebraten 
+checking if compiler is koch 1.60 or higher....yes 
+checking if geschirr is clean...yes 
+checking if /dev/herd works...yes 
+..setting up dependencies: 
+entering Kühlschrank... 
+/Schweinefleisch..checking....[done] 
+/Gewürz..checking...[done] 
+/Wasser..checking...[done] 
+/Fett..checking...[done] 
+/Wurzelwerk..checking...[done] 
+koch -o -TEMP=190 -TIME=50 -IFett -IWurzelwerk Schweinefleisch Gebratenes.o [done] 
+koch -o -TEMP=120 -TIME=10 -IWasser -IGewürz Sosse Sosse.o [done] 
+mix -o Sosse.o Gebratenes.o Schweinebraten [done] 
+cp Schweinebraten /usr/tisch/teller/Schweinebraten [done] 
+Schweinebraten is now ready.
