@@ -137,8 +137,30 @@ install_dotfiles () {
   done
 }
 
+install_privatefiles () {
+  info 'installing private files'
+
+  local overwrite_all=false backup_all=false skip_all=false
+
+  for src in $(find -H "$HOME/.private" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+  do
+    dst="$HOME/.$(basename "${src%.*}")"
+    link_file "$src" "$dst"
+  done
+
+  for src in $(find "$HOME/.private" -type f | grep ".relative")
+  do
+    basedir=$(dirname $src | sed "s/.relative//")
+    dirname=$(basename $basedir)
+    filename=$(basename $src)
+    dst="$HOME/.${dirname}/${filename}"
+    link_file "$src" "$dst"
+  done
+}
+
 setup_gitconfig
 install_dotfiles
+install_privatefiles
 
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]
