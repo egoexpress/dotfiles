@@ -1,6 +1,12 @@
 # path to oh-my-zsh installation.
 export ZSH=/home/wonder/.oh-my-zsh
 
+# fix LC_CTYPE
+export LC_CTYPE="en_US.UTF-8"
+
+# allow to define functions based on an alias
+setopt alias_func_def 2>/dev/null
+
 # zsh theme
 ZSH_THEME="blinks"
 
@@ -19,9 +25,26 @@ ZSH_CUSTOM=$HOME/.dotfiles/zsh
 # oh-my-zsh plugins
 plugins=(
   git
-  git-flow
-  docker-compose
-  pj
+  colored-man
+  colorize
+  compleat
+  history
+  mosh
+  tmux
+  tmuxinator
+  pip
+  python
+  virtualenv
+  brew
+  osx
+  terminalapp
+  sublime
+  brew-cask
+  git-extras
+  github
+  vagrant
+  z
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
