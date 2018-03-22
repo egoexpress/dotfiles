@@ -3,3 +3,4 @@ if (( $+commands[grc] ))
 then
   source /etc/grc.zsh
 fi
+alias ls="grc --colour=auto ls --color"
