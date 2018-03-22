@@ -88,3 +88,6 @@ bindkey "^[[B" down-line-or-beginning-search # Down
 
 # make $PATH entries unique
 typeset -aU path
+
+# set dircolors
+eval `dircolors ~/.dircolors`
