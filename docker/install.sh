@@ -2,5 +2,5 @@
 
 if (( ! $+commands[docker-compose] ))
 then
-  sudo apt-get install -yqq docker-compose
+  install_tool docker-compose
 fi
