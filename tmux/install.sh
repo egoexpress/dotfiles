@@ -2,7 +2,7 @@
 
 if (( ! $+commands[tmuxinator] ))
 then
-  sudo apt-get -yqq install tmuxinator
+  install_tool tmuxinator
 fi
 
 if [ ! -d ~/.tmux-plugins ]; then
