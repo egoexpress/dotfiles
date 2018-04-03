@@ -1,6 +1,6 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 
 if (( ! $+commands[autojump] ))
 then
-  sudo apt-get install -y autojump
+  install_tool autojump
 fi
