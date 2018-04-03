@@ -2,5 +2,8 @@
 
 if (( ! $+commands[docker-compose] ))
 then
-  install_tool docker-compose
+  if (( ! $+commands[docker] ))
+  then
+    install_tool docker-compose
+  fi
 fi
