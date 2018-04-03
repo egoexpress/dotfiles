@@ -1,6 +1,6 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 
 if (( ! $+commands[keychain] ))
 then
-  sudo apt-get install -yq keychain
+  install_tool keychain
 fi
