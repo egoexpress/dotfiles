@@ -1,6 +1,6 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 
 if (( ! $+commands[mutt] ))
 then
-  sudo apt-get install -yqq mutt
+  install_tool mutt
 fi
