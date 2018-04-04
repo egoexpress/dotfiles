@@ -2,7 +2,9 @@ which keychain &>/dev/null
 
 _load_kckey() {
   KEY="$1"
-  eval `keychain -q --eval --agents ssh ${KEY}`
+  keychain --list | grep ${KEY} >&/dev/null || {
+    eval `keychain -q --eval --agents ssh ${KEY}`
+  }
 }
 
 
