@@ -1,4 +1,4 @@
-source ~/.private/letsencrypt/*
+[ -d $HOME/.private/letsencrypt ] && source ~/.private/letsencrypt/*
 
 [ -d /usr/local/etc/dehydrated ] && {
 
@@ -18,7 +18,7 @@ source ~/.private/letsencrypt/*
   }
 }
 
-[ -r /usr/local/bin/letsencrypt ] && {
+[ -x /usr/local/bin/letsencrypt ] && {
   # update Let's Encrypt certificates on Uberspace servers
   letsencrypt-update-uberspace() {
 
@@ -36,3 +36,4 @@ source ~/.private/letsencrypt/*
     unset _CERT_LIFETIME
   }
 }
+
