@@ -1,8 +1,6 @@
 [ -r /etc/redhat-release ] && {
   unset RPROMPT
   update() {
-    cd
-    git pull
     local PROGS=`toast status | grep -v "^ .*"`
     eval "TOASTPROGS=($PROGS)"
     for TOASTPROG in $TOASTPROGS; do
