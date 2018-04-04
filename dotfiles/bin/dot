@@ -37,11 +37,13 @@ while test $# -gt 0; do
 	shift
 done
 
+. $DOTFILES/dotfiles/env.zsh
+
 # Install homebrew
 $DOTFILES/brew/install.sh bootstrap
 
 echo "› update environment and system"
-. $DOTFILES/debian/aliases.zsh
+. $DOTFILES/$OS/aliases.zsh
 update
 
 # Install software
