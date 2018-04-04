@@ -2,7 +2,12 @@
 
 if (( ! $+commands[tmuxinator] ))
 then
-  install_tool tmuxinator
+  if [ "$OS" = "redhat" ]
+  then
+    gem install --user-install tmuxinator
+  else
+    install_tool tmuxinator
+  fi
 fi
 
 if [ ! -d ~/.tmux-plugins ]; then
