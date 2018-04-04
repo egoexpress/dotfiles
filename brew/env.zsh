@@ -3,4 +3,5 @@
   export MANPATH=":$HOME/.local/brew/share/man:$MANPATH"
   export INFOPATH="$HOME/.local/brew/share/info:$INFOPATH"
   export HOMEBREW_NO_ANALYTICS=1
+  export HOMEBREW_NO_ENV_FILTERING=1
 }
