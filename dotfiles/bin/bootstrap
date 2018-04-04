@@ -144,7 +144,9 @@ install_files () {
     basedir=$(dirname $src | sed "s/.relative//")
     dirname=$(basename $basedir)
     filename=$(basename $src)
-    dst="$HOME/.${dirname}/${filename}"
+    dstdir="$HOME/.${dirname}"
+    mkdir -p $dstdir
+    dst="${dstdir}/${filename}"
     link_file "$src" "$dst"
   done
 }
