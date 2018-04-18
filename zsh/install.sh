@@ -8,12 +8,6 @@ then
   install_tool zsh
 fi
 
-if (( ! $+commands[grc] ))
-then
-  brew install grc
-fi
-
-
 # install oh-my-zsh
 if [ ! -d ~/.oh-my-zsh ]
 then
