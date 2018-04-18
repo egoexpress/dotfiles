@@ -12,7 +12,7 @@
 
   update() {
     cd ~/.dotfiles
-    git pull
+    git pull -q
     sudo apt-get -yqq update
     sudo apt-get -yqq dist-upgrade
     sudo apt-get -yqq clean

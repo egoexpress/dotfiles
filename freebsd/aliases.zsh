@@ -1,7 +1,7 @@
 [ `/bin/uname` = "FreeBSD" ] && {
   update() {
     cd
-    git pull
+    git pull -q
     sudo rm -rf /var/db/freebsd-update/files
 
     local ISJAIL=`ls -id / | awk '{print $1}'`

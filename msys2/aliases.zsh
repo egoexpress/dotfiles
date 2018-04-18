@@ -5,7 +5,7 @@
   
   update() {
     cd
-    git pull
+    git pull -q
     update-core
     pacman -Syu
     update-submodules
