@@ -7,6 +7,8 @@
 
 # set -e
 
+
+
 export DOTFILES=$HOME/.dotfiles
 
 displayUsageAndExit() {
@@ -42,14 +44,14 @@ done
 # Install homebrew
 $DOTFILES/brew/install.sh bootstrap
 
-echo "› update environment and system"
+print -P "› %F{208}update environment and system%f"
 . $DOTFILES/$OS/aliases.zsh
 update
 
 # Install software
-echo "› running install scripts"
+print -P "› %F{208}running install scripts%f"
 $DOTFILES/dotfiles/bin/install
-echo "› all install scripts finished"
+print -P "› %F{green}all install scripts finished%f"
 
 . ~/.zshrc
-echo "› environment reloaded"
+print -P "› %F{green}environment reloaded%f"
