@@ -1,4 +1,7 @@
-. ~/.private/gpg/*
+if [ -d ~/.private/gpg ];
+then
+  . ~/.private/gpg/*
+fi
 
 # get missing GPG keys
 alias gpg-get-missing="gpg --list-sigs ${GPG_KEY} | 
