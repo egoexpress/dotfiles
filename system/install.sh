@@ -9,3 +9,8 @@ if (( ! $+commands[grc] ))
 then
   install_tool grc
 fi
+
+if (( ! $+commands[glances] ))
+then
+  install_tool glances
+fi
