@@ -13,10 +13,10 @@
   update() {
     cd ~/.dotfiles
     git pull -q
-    sudo apt-get -yqq update
-    sudo apt-get -yqq dist-upgrade
-    sudo apt-get -yqq clean
-    sudo apt-get autoremove -yqq
+    sudo /usr/bin/apt-get -yqq update
+    sudo /usr/bin/apt-get -yqq dist-upgrade
+    sudo /usr/bin/apt-get -yqq clean
+    sudo /usr/bin/apt-get autoremove -yqq
     brew update
     cd - >/dev/null
   }
