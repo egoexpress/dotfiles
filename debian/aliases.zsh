@@ -20,4 +20,7 @@
     brew update
     cd - >/dev/null
   }
+
+  # add GPG key for apt repositories
+  alias add-apt-key='sudo /usr/bin/apt-key adv --keyserver keyserver.ubuntu.com --recv-keys'
 }
