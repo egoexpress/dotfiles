@@ -9,5 +9,9 @@ if [ "$OS" = "redhat" ]
 then
   # TODO: submit patch to homebrew-core to allow
   # OpenSSH to be built without Kerberos5
-  brew install openssh
+  IS_INSTALLED=$(brew list | grep openssh)
+  if [ $? -ne 0 ];
+  then
+    brew install openssh
+  fi
 fi
