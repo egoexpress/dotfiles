@@ -1,7 +1,10 @@
 
 # update wordpress to the latest version
 [ -d $HOME/websites ] && {
-  source ~/.private/wordpress/*
+  if [ -d $HOME/.private/wordpress ];
+  then
+    source ~/.private/wordpress/*
+  fi
   
   update-wordpress () {
     ERRORLOG=/tmp/wordpress-update.$$.log
