@@ -8,7 +8,7 @@ elif [ -r /etc/debian_version ]
 then
   OS=debian
   function install_tool() {
-    sudo apt-get -yqq install $1
+    sudo /usr/bin/apt-get -yqq install $1
   }
 else
   OS=unknown
