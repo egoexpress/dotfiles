@@ -14,3 +14,8 @@ if (( ! $+commands[glances] ))
 then
   install_tool glances
 fi
+
+if (( ! $+commands[dtrx] ))
+then
+  install_tool dtrx
+fi
