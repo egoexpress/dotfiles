@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 [ -d $HOME/.private/letsencrypt ] && source ~/.private/letsencrypt/*
 
 [ -d /usr/local/etc/dehydrated ] && {
@@ -23,6 +25,10 @@
   letsencrypt-update-uberspace() {
 
     _CERT_LIFETIME=`uberspace-list-certificates | grep "will be removed" | grep -Po '\d+'`
+    if [ $? -eq 1 ]; then
+      _CERT_LIFETIME=0
+    fi
+
     if [ ${_CERT_LIFETIME} -lt 14 ]; then
       LE_PATH=$HOME/.config/letsencrypt
 
@@ -30,7 +36,7 @@
       letsencrypt certonly
       [ $? -eq 0 ] && {
         uberspace-add-certificate -k ${UBERSPACE_CERTDIR}/privkey.pem \
-          -c ${UBERSPACE_CERTDIR}/bjoern.stierand.org/cert.pem
+          -c ${UBERSPACE_CERTDIR}/cert.pem
       }
     fi
     unset _CERT_LIFETIME
