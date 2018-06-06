@@ -46,7 +46,22 @@ $DOTFILES/brew/install.sh bootstrap
 
 print -P "› %F{208}update environment and system%f"
 . $DOTFILES/$OS/aliases.zsh
+
+# update repos
+if [ -d ~/.private/.git ]; then
+  git --git-dir=$HOME/.private/.git --work-tree=$HOME/.private pull -q
+fi
+
+git --git-dir=$DOTFILES/.git --work-tree=$DOTFILES pull -q
+
+# run platform-specific updates
 update
+
+cd ~/.dotfiles
+which brew >/dev/null 2>&1 && {
+  brew update && brew upgrade
+}
+cd - > /dev/null
 
 # Install software
 print -P "› %F{208}running install scripts%f"

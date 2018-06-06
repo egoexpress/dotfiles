@@ -4,12 +4,7 @@
   alias vi=vim
   
   update() {
-    cd
-    git pull -q
     update-core
     pacman -Syu
-    update-submodules
-    resource-zshfiles
-    cd - >/dev/null
   }
 }

@@ -7,12 +7,6 @@
       /usr/bin/toast upgrade $TOASTPROG
     done
     unset TOASTPROGS
-
-    which brew >/dev/null 2>&1 && {
-      brew update && brew upgrade
-    }
-
-    cd - >/dev/null
   }
 
   # prefer toast (http://www.toastball.net/toast) path if available

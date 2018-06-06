@@ -11,14 +11,10 @@
   alias dbp='dpkg-buildpackage'
 
   update() {
-    cd ~/.dotfiles
-    git pull -q
     sudo /usr/bin/apt-get -yqq update
     sudo /usr/bin/apt-get -yqq dist-upgrade
     sudo /usr/bin/apt-get -yqq clean
     sudo /usr/bin/apt-get autoremove -yqq
-    brew update
-    cd - >/dev/null
   }
 
   # add GPG key for apt repositories
