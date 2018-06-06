@@ -19,3 +19,8 @@ if (( ! $+commands[dtrx] ))
 then
   install_tool dtrx
 fi
+
+if (( ! $+commands[curl] ))
+then
+  install_tool curl
+fi
