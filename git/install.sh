@@ -2,5 +2,7 @@
 
 if (( ! $+commands[hub] ))
 then
-  brew install hub 
+  if [ "$OS" != "freebsd" ]; then
+    brew install hub 
+  fi
 fi
