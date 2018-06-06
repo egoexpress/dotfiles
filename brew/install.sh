@@ -15,9 +15,11 @@ then
     install_tool linuxbrew-wrapper
     brew bundle
   fi
-fi
 
-if [ "$1" != "bootstrap" ]
-then
-  brew bundle --file=$HOME/.dotfiles/brew/Brewfile
+  if [ "$1" != "bootstrap" ]
+  then
+    if [ "${OS}" != "freebsd" ]; then
+      brew bundle --file=$HOME/.dotfiles/brew/Brewfile
+    fi
+  fi
 fi
