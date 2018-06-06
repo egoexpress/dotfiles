@@ -10,6 +10,12 @@ then
   function install_tool() {
     sudo /usr/bin/apt-get -yqq install $1
   }
+elif [ -x /bin/freebsd-version ]
+then
+  OS=freebsd
+  function install_tool() {
+    sudo pkg install $1
+  }
 else
   OS=unknown
   function install_tool() {
