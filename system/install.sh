@@ -24,3 +24,8 @@ if (( ! $+commands[curl] ))
 then
   install_tool curl
 fi
+
+if (( ! $+commands[ncdu] ))
+then
+  install_tool ncdu
+fi
