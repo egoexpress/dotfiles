@@ -14,5 +14,6 @@ whitelist_from noreply@usepanda.com
 whitelist_from noreply@foursquare.com
 whitelist_from service@audible.de
 whitelist_from no_reply@mediamarkt.de
+whitelist_from noreply@dhl.de
 
 score DATE_IN_FUTURE_06_12 5.699 0.002 4.444 3.894
