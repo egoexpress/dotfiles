@@ -15,4 +15,12 @@
     # stop raging kswapd
     sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
   }
+
+  # test tls negotiation
+  # all '-tls1' to check if TLS 1.0 is configured
+  test-tls() {
+    SERVERNAME="$1"
+    shift
+    openssl s_client -servername ${SERVERNAME} -connect ${SERVERNAME}:443 $@ < /dev/null
+  }
 }
