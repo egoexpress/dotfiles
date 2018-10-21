@@ -14,7 +14,7 @@ alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C
 alias gp='git push origin HEAD'
 
 # Remove `+` and `-` from start of diff lines; just rely upon color.
-unalias gd
+unalias gd >/dev/null 2>&1
 gd() {
   git diff --color $* | sed "s/^\([^-+ ]*\)[-+ ]/\\1/" | less -r
 }
@@ -88,3 +88,15 @@ git-shrink-repo () {
 
 alias gbv='git branch -vv'
 alias gll='glo | head -10; true'
+
+git-find-dirty-repos () {
+	for SUBDIR in $(find . -maxdepth 1 ! -path . -type d); do
+		cd $SUBDIR
+		if [[ -d .git ]]; then
+			if ! [[ -z $(git status -s) ]]; then
+				echo "$SUBDIR is dirty"
+			fi
+		fi
+		cd - >/dev/null
+	done
+}
