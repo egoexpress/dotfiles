@@ -100,3 +100,13 @@ git-find-dirty-repos () {
 		cd - >/dev/null
 	done
 }
+
+git-push-repos () {
+	for SUBDIR in $(find . -maxdepth 1 ! -path . -type d); do
+		cd $SUBDIR
+		if [[ -d .git ]]; then
+			git push
+		fi
+		cd - >/dev/null
+	done
+}
