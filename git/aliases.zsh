@@ -105,7 +105,17 @@ git-push-repos () {
 	for SUBDIR in $(find . -maxdepth 1 ! -path . -type d); do
 		cd $SUBDIR
 		if [[ -d .git ]]; then
-			git push
+      echo -n "Trying to push $(basename $SUBDIR)... "
+			if ! [[ -z $(git remote -v) ]]; then
+			  git push >/dev/null 2>&1
+        if [[ $? -eq 0 ]]; then
+          echo "done"
+        else
+          echo "failed"
+        fi
+      else
+        echo "no remote!"
+      fi
 		fi
 		cd - >/dev/null
 	done
