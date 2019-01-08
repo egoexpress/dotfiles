@@ -20,5 +20,17 @@
     docker exec -it "${1}" /bin/bash
   }
 
-  alias dcu='docker-compose up -d'
+  dcu() {
+    _DC_PROJECT=$(basename $PWD | sed "s/docker-//g")
+    docker-compose -p ${_DC_PROJECT} up -d
+    unset _DC_PROJECT
+  }
+
+  dcs() {
+    _DC_PROJECT=$(basename $PWD | sed "s/docker-//g")
+    docker-compose -p ${_DC_PROJECT} stop
+    unset _DC_PROJECT
+  }
+
+  alias docker-system-prune='docker system prune -a --volumes'
 }
