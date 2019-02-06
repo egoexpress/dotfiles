@@ -69,5 +69,4 @@ print -P "› %F{208}running install scripts%f"
 $DOTFILES/dotfiles/bin/install
 print -P "› %F{green}all install scripts finished%f"
 
-. ~/.zshrc
-print -P "› %F{green}environment reloaded%f"
+print -P "› %F{green}environment has to be reloaded to set changes in effect%f"
