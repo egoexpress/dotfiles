@@ -19,4 +19,15 @@
 
   # add GPG key for apt repositories
   alias add-apt-key='sudo /usr/bin/apt-key adv --keyserver keyserver.ubuntu.com --recv-keys'
+
+  remove-kernel() {
+    _KERNEL_VERSION="$1"
+    _PACKAGES=`dpkg -l | grep "linux.*-${_KERNEL_VERSION}.*"`
+    if [ ! -z "${_PACKAGES}" ]; then
+      dpkg -l | grep "ii.*linux.*-${_KERNEL_VERSION}.*" | awk '{ print $2 }' | xargs sudo apt-get remove
+      dpkg -l | awk '{ print $2 }' | grep "linux.*-${_KERNEL_VERSION}.*" | xargs sudo dpkg -P
+    fi
+
+    unset _KERNEL_VERSION _PACKAGES
+  }
 }
