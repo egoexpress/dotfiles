@@ -12,7 +12,7 @@ fi
 
 if (( ! $+commands[glances] ))
 then
-  install_tool glances
+  install_tool ${GLANCES_PKGNAME}
 fi
 
 if (( ! $+commands[dtrx] ))

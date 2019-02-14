@@ -1,3 +1,5 @@
+GLANCES_PKGNAME=glances
+
 if [ -r /etc/redhat-release ]
 then
   OS=redhat
@@ -22,3 +24,5 @@ else
     echo "No method defined to install $1"
   }
 fi
+
+[ -f ~/.dotfiles/${OS}/env.zsh ] && . ~/.dotfiles/${OS}/env.zsh
