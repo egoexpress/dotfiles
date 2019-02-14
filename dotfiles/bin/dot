@@ -68,5 +68,5 @@ cd - > /dev/null
 print -P "› %F{208}running install scripts%f"
 $DOTFILES/dotfiles/bin/install
 print -P "› %F{green}all install scripts finished%f"
-
+state
 print -P "› %F{green}environment has to be reloaded to set changes in effect%f"
