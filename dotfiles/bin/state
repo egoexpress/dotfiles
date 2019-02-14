@@ -1,9 +1,13 @@
 #!/usr/bin/env zsh
 
 print -P "› %F{208}state of .dotfiles%f"
-git --git-dir=$DOTFILES/.git --work-tree=$DOTFILES status -s
+git --git-dir=${DOTFILES}/.git --work-tree=${DOTFILES} status -s
+[ $(git --git-dir=${DOTFILES}/.git log @{push}.. | wc -l) -eq 0 ] || print -P "› %F{207}local changes to push%f"
 
 if [ -d ~/.private/.git ]; then
   print -P "› %F{208}state of .private%f"
-  git --git-dir=$HOME/.private/.git --work-tree=$HOME/.private status -s
+  WORKING_DIR=${HOME}/.private
+  git --git-dir=${WORKING_DIR}/.git --work-tree=${WORKING_DIR} status -s
+  [ $(git --git-dir=${WORKING_DIR}/.git log @{push}.. | wc -l) -eq 0 ] || print -P "› %F{207}local changes to push%f"
 fi
+
