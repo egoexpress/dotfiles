@@ -151,9 +151,20 @@ install_files () {
   done
 }
 
-setup_gitconfig
+# bootstrap git config if in private repo
+[ -f ~/.private/git/gitconfig.local.symlink ] && {
+  rm $HOME/.gitconfig.local
+  ln -s ~/.private/git/gitconfig.local.symlink $HOME/.gitconfig.local
+} || {
+  setup_gitconfig
+}
+
 install_files "dotfiles" "$DOTFILES_ROOT"
 [ -d ~/.private ] && install_files "private files" "$HOME/.private"
+
+LOCAL_HOSTNAME=$(hostname -s)
+[ -d ~/.private/hosts/${LOCAL_HOSTNAME} ] && \
+  install_files "host-specific files for ${LOCAL_HOSTNAME}" "$HOME/.private/hosts/${LOCAL_HOSTNAME}"
 
 # If we're on a Mac, let's install and setup homebrew.
 if [ "$(uname -s)" == "Darwin" ]
