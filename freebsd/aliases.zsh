@@ -27,6 +27,7 @@
       #  sudo pkg update && sudo pkg upgrade && sudo pkg clean
       # fi
 
+      sudo pkg clean -y
       sudo rm -rf /var/db/freebsd-update/files
     }
 
