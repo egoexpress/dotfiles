@@ -21,13 +21,13 @@
   }
 
   dcu() {
-    _DC_PROJECT=$(basename $PWD | sed "s/docker-//g")
+    _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
     docker-compose -p ${_DC_PROJECT} up -d
     unset _DC_PROJECT
   }
 
   dcs() {
-    _DC_PROJECT=$(basename $PWD | sed "s/docker-//g")
+    _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
     docker-compose -p ${_DC_PROJECT} stop
     unset _DC_PROJECT
   }
