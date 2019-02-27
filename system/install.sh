@@ -15,11 +15,6 @@ then
   install_tool ${GLANCES_PKGNAME}
 fi
 
-if (( ! $+commands[dtrx] ))
-then
-  install_tool dtrx
-fi
-
 if (( ! $+commands[curl] ))
 then
   install_tool curl
