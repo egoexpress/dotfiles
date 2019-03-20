@@ -22,6 +22,7 @@
 
   dcu() {
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
+    docker-compose pull
     docker-compose -p ${_DC_PROJECT} up -d
     unset _DC_PROJECT
   }
