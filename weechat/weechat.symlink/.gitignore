@@ -5,3 +5,4 @@ plugins.conf
 relay.conf
 sec.conf
 weechat.conf
+*.log
