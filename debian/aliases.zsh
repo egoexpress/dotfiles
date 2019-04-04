@@ -22,6 +22,12 @@
 
   remove-kernel() {
     _KERNEL_VERSION="$1"
+
+    [ -z ${_KERNEL_VERSION} ] && {
+      echo "Specify a kernel version to remove"
+      return 1
+    }
+
     _PACKAGES=`dpkg -l | grep "linux.*-${_KERNEL_VERSION}.*"`
     if [ ! -z "${_PACKAGES}" ]; then
       dpkg -l | grep "ii.*linux.*-${_KERNEL_VERSION}.*" | awk '{ print $2 }' | xargs sudo apt-get remove
