@@ -33,5 +33,5 @@
     unset _DC_PROJECT
   }
 
-  alias docker-system-prune='docker system prune -a --volumes'
+  alias docker-system-prune='docker system prune -a --volumes -f'
 }
