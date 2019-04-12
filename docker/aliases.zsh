@@ -34,4 +34,5 @@
   }
 
   alias docker-system-prune='docker system prune -a --volumes -f'
+  alias dim='docker images'
 }
