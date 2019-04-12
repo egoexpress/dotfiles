@@ -14,3 +14,12 @@ then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
   rm -f ~/.zshrc.pre-oh-my-zsh
 fi
+
+mkdir -p ~/.zsh-custom/plugins
+
+# install zsh plugins
+if [ ! -d ~/.zsh-custom/plugins/k ]
+then
+  git clone https://github.com/supercrabtree/k ~/.zsh-custom/plugins/k
+fi
+
