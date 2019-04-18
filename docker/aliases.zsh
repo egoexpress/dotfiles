@@ -21,10 +21,14 @@
   }
 
   dcu() {
+    _DC_FILES=""
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
     docker-compose pull
-    docker-compose -p ${_DC_PROJECT} up -d
-    unset _DC_PROJECT
+    [ -r ${PWD}/docker-compose.local.yml ] && {
+      _DC_FILES="-f docker-compose.local.yml -f docker-compose.yml"
+    }
+    docker-compose ${_DC_FILES} -p ${_DC_PROJECT} up -d
+    unset _DC_PROJECT _DC_FILES
   }
 
   dcs() {
