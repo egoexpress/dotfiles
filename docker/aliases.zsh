@@ -27,6 +27,9 @@
     [ -r ${PWD}/docker-compose.local.yml ] && {
       _DC_FILES="-f docker-compose.local.yml -f docker-compose.yml"
     }
+    [ -r ${PWD}/startup.sh ] && {
+      . ${PWD}/startup.sh
+    }
     docker-compose ${_DC_FILES} -p ${_DC_PROJECT} up -d
     unset _DC_PROJECT _DC_FILES
   }
@@ -34,6 +37,12 @@
   dcs() {
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
     docker-compose -p ${_DC_PROJECT} stop
+    unset _DC_PROJECT
+  }
+
+  dcl() {
+    _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
+    docker-compose -p ${_DC_PROJECT} logs $*
     unset _DC_PROJECT
   }
 
