@@ -20,7 +20,17 @@
     docker exec -it "${1}" /bin/bash
   }
 
+  _check_for_docker_compose_file() {
+    ([ -r ${PWD}/docker-compose.yml ] || [ -r ${PWD}/docker-compose.yaml ]) || {
+      echo 'No docker-compose configuration found in current directory, exiting.'
+      return 1
+    }
+    return 0
+  }
+
   dcu() {
+    _check_for_docker_compose_file || return 1
+
     _DC_FILES=""
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
     docker-compose pull
@@ -35,12 +45,16 @@
   }
 
   dcs() {
+    _check_for_docker_compose_file || return 1
+
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
     docker-compose -p ${_DC_PROJECT} stop
     unset _DC_PROJECT
   }
 
   dcl() {
+    _check_for_docker_compose_file || return 1
+
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
     docker-compose -p ${_DC_PROJECT} logs $*
     unset _DC_PROJECT
