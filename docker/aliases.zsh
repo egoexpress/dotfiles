@@ -4,6 +4,9 @@
 }
 
 [ -r /usr/bin/docker ] && {
+
+  # wrapper for 'docker ps'
+  # pretty-print output
   dps () {
     _FILTER="$1"
     [ $# -gt 1 ] && shift
@@ -12,14 +15,19 @@
     unset _FILTER _FORMAT
   }
 
+  # wrapper for 'docker ps -a'
+  # pretty-print output
   dpa() {
     dps "$1" -a
   }
 
+  # wrapper for 'docker exec -it <container> /bin/bash'
   db() {
     docker exec -it "${1}" /bin/bash
   }
 
+  # helper function
+  # check if a docker-compose setup exists in the current directory
   _check_for_docker_compose_file() {
     ([ -r ${PWD}/docker-compose.yml ] || [ -r ${PWD}/docker-compose.yaml ]) || {
       echo 'No docker-compose configuration found in current directory, exiting.'
@@ -28,6 +36,12 @@
     return 0
   }
 
+  # wrapper for 'docker-compose up'
+  # get project name from current directory
+  # pull images before run (useful for update scenarios)
+  # check if a docker-compose.local.yml exists, prefer it over
+  #   a docker-compose.override.yml file
+  # run startup.sh before docker-compose run if present
   dcu() {
     _check_for_docker_compose_file || return 1
 
@@ -44,6 +58,8 @@
     unset _DC_PROJECT _DC_FILES
   }
 
+  # wrapper for 'docker-compose stop'
+  # get project name from current directory
   dcs() {
     _check_for_docker_compose_file || return 1
 
@@ -52,12 +68,25 @@
     unset _DC_PROJECT
   }
 
+  # wrapper for 'docker-compose logs'
+  # get project name from current directory
   dcl() {
     _check_for_docker_compose_file || return 1
 
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
     docker-compose -p ${_DC_PROJECT} logs $*
     unset _DC_PROJECT
+  }
+
+  # wrapper for 'docker-compose run'
+  # get services from docker-compose file and run them
+  dcr() {
+    _check_for_docker_compose_file || return 1
+
+    _SERVICE_NAME=$(docker-compose config --services)
+    docker-compose run --rm ${_SERVICE_NAME} $*
+
+    unset _SERVICE_NAME
   }
 
   alias docker-system-prune='docker system prune -a --volumes -f'
