@@ -89,6 +89,26 @@
     unset _SERVICE_NAME
   }
 
+  docker-compose-backup() {
+    _check_for_docker_compose_file || return 1
+
+    dcs
+
+    _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
+
+    for volume in $(docker volume ls -qf name=${_DC_PROJECT}_); do
+      echo -n "Backing up volume ${volume}..."
+      docker run -v ${volume}:/volume -v /tmp:/backup --rm loomchild/volume-backup backup ${volume}
+      echo +++ $volume
+      echo 'done.'
+    done
+
+    tar czf ${_DC_PROJECT}.tar.gz /tmp/${_DC_PROJECT}*
+    dcu
+
+    unset _DC_PROJECT
+  }
+
   alias docker-system-prune='docker system prune -a --volumes -f'
   alias dim='docker images'
 }
