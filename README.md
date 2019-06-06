@@ -54,14 +54,20 @@ So you can split the `.weechat` dir as following:
   with private information. Symlinks in `~/.weechat` will be created
   for each of these files.
 
+## Prerequisites
+
+Your user should run `zsh` as the primary shell.
+
 ## Install
 
 Run this:
 
 ```sh
 git clone https://github.com/egoexpress/dotfiles.git ~/.dotfiles
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 cd ~/.dotfiles
 dotfiles/bin/bootstrap
+dotfiles/bin/install
 ```
 
 This will symlink the appropriate files in `.dotfiles` to your home directory.
