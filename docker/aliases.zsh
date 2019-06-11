@@ -90,23 +90,46 @@
   }
 
   docker-compose-backup() {
-    _check_for_docker_compose_file || return 1
-
-    dcs
-
-    _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
+    _DC_PROJECT="$1"
+    [ -z "$1" ] && {
+      _check_for_docker_compose_file || return 1
+      dcs
+      _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
+    }
 
     for volume in $(docker volume ls -qf name=${_DC_PROJECT}_); do
       echo -n "Backing up volume ${volume}..."
       docker run -v ${volume}:/volume -v /tmp:/backup --rm loomchild/volume-backup backup ${volume}
-      echo +++ $volume
       echo 'done.'
     done
 
-    tar czf ${_DC_PROJECT}.tar.gz /tmp/${_DC_PROJECT}*
-    dcu
+    tar --strip-components=1 -czf ${_DC_PROJECT}.tar.gz /tmp/${_DC_PROJECT}*
+
+    [ -z $1 ] && dcu
 
     unset _DC_PROJECT
+  }
+
+  docker-compose-restore() {
+    _FILENAME="$1"
+    ([ -z "${_FILENAME}" ] || [ ! -r "${_FILENAME}" ]) && {
+      echo "Please provide a tar.gz file containing the volume backup as an argument."
+      return 1
+    }
+
+    _UNPACKDIR=/tmp/$(basename ${_FILENAME}).$$
+    _FILENAME=$(realpath ${_FILENAME})
+
+    mkdir ${_UNPACKDIR}
+    cd ${_UNPACKDIR}
+    tar --strip-components=1 -xzf ${_FILENAME}
+    for FILE in $(ls *.tar.bz2); do
+      _VOLUME_NAME=$(echo $FILE | sed "s/.tar.bz2//")
+
+      docker run -v ${_VOLUME_NAME}:/volume -v ${_UNPACKDIR}:/backup --rm loomchild/volume-backup restore ${_VOLUME_NAME}
+    done
+    cd - >/dev/null
+    rm -rf ${_UNPACKDIR}
   }
 
   alias docker-system-prune='docker system prune -a --volumes -f'
