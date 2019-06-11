@@ -123,10 +123,11 @@
     mkdir ${_UNPACKDIR}
     cd ${_UNPACKDIR}
     tar --strip-components=1 -xzf ${_FILENAME}
-    for FILE in $(ls *.tar.bz2); do
+    for FILE in $(ls --color=never *.tar.bz2); do
       _VOLUME_NAME=$(echo $FILE | sed "s/.tar.bz2//")
-
+      echo -n "Restoring volume ${_VOLUME_NAME}..."
       docker run -v ${_VOLUME_NAME}:/volume -v ${_UNPACKDIR}:/backup --rm loomchild/volume-backup restore ${_VOLUME_NAME}
+      echo 'done.'
     done
     cd - >/dev/null
     rm -rf ${_UNPACKDIR}
