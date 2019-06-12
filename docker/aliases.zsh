@@ -135,4 +135,10 @@
 
   alias docker-system-prune='docker system prune -a --volumes -f'
   alias dim='docker images'
+
+  # get container name(s) a volume is bound to
+  # https://stackoverflow.com/questions/42857575/how-to-determine-what-containers-use-the-docker-volume
+  docker-container-vol() {
+    docker ps -a --format "{{.Names}}" --filter volume=${1}
+  }
 }
