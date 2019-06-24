@@ -47,7 +47,7 @@
 
     _DC_FILES=""
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
-    docker-compose pull
+    docker-compose pull --ignore-pull-failures --parallel --quiet
     [ -r ${PWD}/docker-compose.local.yml ] && {
       _DC_FILES="-f docker-compose.local.yml -f docker-compose.yml"
     }
