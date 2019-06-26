@@ -24,3 +24,8 @@ if (( ! $+commands[ncdu] ))
 then
   install_tool ncdu
 fi
+
+if (( ! $+commands[peco] ))
+then
+  brew install peco
+fi
