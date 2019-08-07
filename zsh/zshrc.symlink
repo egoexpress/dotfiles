@@ -52,13 +52,10 @@ plugins=(
 
 # path to dotfiles
 export DOTFILES="$HOME/.dotfiles"
-export PRIVATEFILES="$HOME/.private"
 
 # get all zsh .dotfiles
 typeset -U config_files
-typeset -U private_files
 config_files=($DOTFILES/**/*.zsh)
-private_files=($PRIVATEFILES/**/*.zsh)
 
 # load the path files
 for file in ${(M)config_files:#*/path.zsh}
@@ -72,11 +69,18 @@ do
   source $file
 done
 
-# load everything but the path and completion files in ~/.private
-for file in ${${private_files:#*/path.zsh}:#*/completion.zsh}
-do
-  source $file
-done
+export PRIVATEFILES="$HOME/.private"
+
+if test -d ${PRIVATEFILES}; then
+  typeset -U private_files
+  private_files=($PRIVATEFILES/**/*.zsh)
+
+  # load everything but the path and completion files in ~/.private
+  for file in ${${private_files:#*/path.zsh}:#*/completion.zsh}
+  do
+    source $file
+  done
+fi
 
 # initialize autocomplete here, otherwise functions won't be loaded
 autoload -U compinit
