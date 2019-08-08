@@ -25,6 +25,12 @@ then
   install_tool ncdu
 fi
 
+if (( ! $+commands[gpg] ))
+then
+  install_tool gnupg2
+  install_tool pass
+fi
+
 if (( ! $+commands[peco] ))
 then
   brew install peco
