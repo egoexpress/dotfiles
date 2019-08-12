@@ -33,5 +33,5 @@ fi
 
 if (( ! $+commands[peco] ))
 then
-  brew install peco
+  install_tool peco
 fi
