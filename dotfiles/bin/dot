@@ -54,6 +54,9 @@ fi
 
 git --git-dir=$DOTFILES/.git --work-tree=$DOTFILES pull -q
 
+# update oh-my-zsh
+git --git-dir=~/.oh-my-zsh --work-tree=~/.oh-my-zsh pull -q
+
 # run platform-specific updates
 update
 
