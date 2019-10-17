@@ -27,6 +27,8 @@ fi
 
 if (( ! $+commands[gpg] ))
 then
+  # needed for 'docker login' to work properly
+  # see https://stackoverflow.com/a/52881198
   install_tool gnupg2
   install_tool pass
 fi
