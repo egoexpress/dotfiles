@@ -37,3 +37,8 @@ if (( ! $+commands[peco] ))
 then
   install_tool peco
 fi
+
+if (( ! $+commands[bat] ))
+then
+  brew install bat
+fi
