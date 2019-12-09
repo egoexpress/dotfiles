@@ -8,6 +8,7 @@ alias -g L='| less'
 alias -g SL='| sort | less'
 alias -g S='| sort'
 alias -g T='| tail'
+alias -g C='| cat'
 
 # perform speedtest
 alias speedtest="wget -q --no-check-certificate -O - https://raw.github.com/sivel/speedtest-cli/master/speedtest.py | python"
@@ -25,3 +26,6 @@ alias ntp='sudo ntpdate 0.europe.pool.ntp.org'
 alias ip4='ip -f inet addr show | grep -v valid_lft'
 # display IPv6 addresses and lifetime of addresses on all interfaces
 alias ip6='ip -f inet6 addr show'
+
+# use bat instead of cat
+alias cat='bat'
