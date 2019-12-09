@@ -40,5 +40,5 @@ fi
 
 if (( ! $+commands[bat] ))
 then
-  brew install bat
+  install_tool bat
 fi

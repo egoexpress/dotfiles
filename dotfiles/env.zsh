@@ -10,7 +10,12 @@ elif [ -r /etc/debian_version ]
 then
   OS=debian
   function install_tool() {
-    sudo /usr/bin/apt-get -yqq install $1
+    apt-cache show $1 >/dev/null 2>&1
+    if [ $? -ne 100 ]; then
+      sudo /usr/bin/apt-get -yqq install $1
+    else
+      brew install $1
+    fi
   }
 elif [ -x /bin/freebsd-version ]
 then
