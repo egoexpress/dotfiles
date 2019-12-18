@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+. ~/.dotfiles/git/aliases.zsh
+
 print -P "› %F{208}state of .dotfiles%f"
 git --git-dir=${DOTFILES}/.git --work-tree=${DOTFILES} status -s
 [ $(git --git-dir=${DOTFILES}/.git log @{push}.. | wc -l) -eq 0 ] || print -P "› %F{207}local changes to push%f"
@@ -11,3 +13,7 @@ if [ -d ~/.private/.git ]; then
   [ $(git --git-dir=${WORKING_DIR}/.git log @{push}.. | wc -l) -eq 0 ] || print -P "› %F{207}local changes to push%f"
 fi
 
+if [ -d ~/development ]; then
+  print -P "› %F{208}state of ~/development%f"
+  git-find-dirty-repos ~/development
+fi

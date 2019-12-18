@@ -90,11 +90,16 @@ alias gbv='git branch -vv'
 alias gll='glo | head -10; true'
 
 git-find-dirty-repos () {
-	for SUBDIR in $(find . -maxdepth 1 ! -path . -type d); do
+
+  TARGET_DIR=.
+  [ -z $1 ] || TARGET_DIR=$1
+
+
+	for SUBDIR in $(find ${TARGET_DIR} -maxdepth 1 ! -path ${TARGET_DIR} -type d); do
 		cd $SUBDIR
 		if [[ -d .git ]]; then
 			if ! [[ -z $(git status -s) ]]; then
-				echo "$SUBDIR is dirty"
+				print -P " %F{red}M%f $SUBDIR"
 			fi
 		fi
 		cd - >/dev/null
