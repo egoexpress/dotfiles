@@ -99,7 +99,8 @@ git-find-dirty-repos () {
 		cd $SUBDIR
 		if [[ -d .git ]]; then
 			if ! [[ -z $(git status -s) ]]; then
-				print -P " %F{red}M%f $SUBDIR"
+        DISPLAYDIR=$(echo $SUBDIR | sed "s|${HOME}|~|g")
+				print -P " %F{red}M%f $DISPLAYDIR"
 			fi
 		fi
 		cd - >/dev/null
