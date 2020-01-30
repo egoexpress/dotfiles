@@ -23,3 +23,8 @@ then
   git clone https://github.com/supercrabtree/k ~/.zsh-custom/plugins/k
 fi
 
+
+if [ ! -d ~/.zsh-custom/themes/powerlevel10k ]
+then
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+fi
