@@ -1,5 +1,11 @@
 #!/usr/bin/env zsh
 
+if [ ! -d ~/.tmux ]
+then
+  git clone https://github.com/gpakosz/.tmux.git ~/.tmux
+  ln -sf .tmux/.tmux.conf
+fi
+
 if (( ! $+commands[tmuxinator] ))
 then
   if [ "$OS" = "redhat" ]
