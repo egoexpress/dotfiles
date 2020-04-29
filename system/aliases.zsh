@@ -28,4 +28,7 @@ alias ip4='ip -f inet addr show | grep -v valid_lft'
 alias ip6='ip -f inet6 addr show'
 
 # use bat instead of cat
-alias cat='bat'
+if (( $+commands[bat] ))
+then
+  alias cat='bat'
+fi
