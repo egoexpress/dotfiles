@@ -53,6 +53,7 @@ plugins=(
   z
   zsh-syntax-highlighting
   k
+  zsh-completions
 )
 
 . $ZSH/oh-my-zsh.sh >/dev/null 2>&1

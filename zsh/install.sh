@@ -23,6 +23,11 @@ then
   git clone https://github.com/supercrabtree/k ~/.zsh-custom/plugins/k
 fi
 
+if [ ! -d ~/.zsh-custom/plugins/zsh-completions ]
+then
+  git clone https://github.com/zsh-users/zsh-completions ~/.zsh-custom/plugins/zsh-completions
+fi
+
 
 if [ ! -d ~/.zsh-custom/themes/powerlevel10k ]
 then
