@@ -44,12 +44,9 @@ plugins=(
   virtualenv
   brew
   osx
-  terminalapp
-  sublime
   brew-cask
   git-extras
   github
-  vagrant
   z
   zsh-syntax-highlighting
   k
