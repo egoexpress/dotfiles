@@ -1,9 +1,6 @@
 [ -r /usr/bin/docker ] && {
   # only alias on MacOSX (use group 'docker' on Linux)
   [ `uname` = "Darwin" ] && alias docker="sudo docker"
-}
-
-[ -r /usr/bin/docker ] && {
 
   # wrapper for 'docker ps'
   # pretty-print output
@@ -70,7 +67,7 @@
 
   # wrapper for 'docker-compose logs'
   # get project name from current directory
-  dcl() {
+  dcpl() {
     _check_for_docker_compose_file || return 1
 
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
@@ -80,7 +77,7 @@
 
   # wrapper for 'docker-compose run'
   # get services from docker-compose file and run them
-  dcr() {
+  dcsr() {
     _check_for_docker_compose_file || return 1
 
     _SERVICE_NAME=$(docker-compose config --services)
