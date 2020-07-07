@@ -1,7 +1,7 @@
 # GRC colorizes nifty unix tools all over the place
 if (( $+commands[grc] ))
 then
-  source $HOME/.dotfiles/system/grc.zsh
+  source $HOME/.dotfiles/system/grc.conf
   if [ "${OS}" != "freebsd" ]; then
     alias ls="grc --colour=auto ls --color"
   else
