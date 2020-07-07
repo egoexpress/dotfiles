@@ -51,6 +51,12 @@ plugins=(
   zsh-syntax-highlighting
   k
   zsh-completions
+  docker
+  docker-compose
+  ubuntu
+  colored-man-pages
+  command-not-found
+  zsh_reload
 )
 
 . $ZSH/oh-my-zsh.sh >/dev/null 2>&1
