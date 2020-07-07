@@ -15,21 +15,24 @@ then
   rm -f ~/.zshrc.pre-oh-my-zsh
 fi
 
-mkdir -p ~/.zsh-custom/plugins
+ZSH_PLUGINS=${ZSH_CUSTOM}/plugins
+ZSH_THEMES=${ZSH_CUSTOM}/themes
+
+mkdir -p ${ZSH_PLUGINS} ${ZSH_THEMES}
 
 # install zsh plugins
-if [ ! -d ~/.zsh-custom/plugins/k ]
+if [ ! -d ${ZSH_PLUGINS}/k ]
 then
-  git clone https://github.com/supercrabtree/k ~/.zsh-custom/plugins/k
+  git clone https://github.com/supercrabtree/k ${ZSH_PLUGINS}/k
 fi
 
-if [ ! -d ~/.zsh-custom/plugins/zsh-completions ]
+if [ ! -d ${ZSH_PLUGINS}/zsh-completions ]
 then
-  git clone https://github.com/zsh-users/zsh-completions ~/.zsh-custom/plugins/zsh-completions
+  git clone https://github.com/zsh-users/zsh-completions ${ZSH_PLUGINS}/zsh-completions
 fi
 
 
-if [ ! -d ~/.zsh-custom/themes/powerlevel10k ]
+if [ ! -d ${ZSH_THEMES}/powerlevel10k ]
 then
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_THEMES}/powerlevel10k
 fi
