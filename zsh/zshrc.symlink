@@ -57,6 +57,9 @@ plugins=(
   colored-man-pages
   command-not-found
   zsh_reload
+  alias-finder
+  autojump
+  fzf
 )
 
 . $ZSH/oh-my-zsh.sh >/dev/null 2>&1
@@ -156,3 +159,6 @@ export TERM=xterm-256color
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# load fzf key bindings and completions
+source ${DOTFILES}/zsh/fzf.zsh
