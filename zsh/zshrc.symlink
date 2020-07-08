@@ -60,6 +60,7 @@ plugins=(
   alias-finder
   autojump
   fzf
+  ripgrep
 )
 
 . $ZSH/oh-my-zsh.sh >/dev/null 2>&1
