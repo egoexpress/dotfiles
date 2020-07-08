@@ -3,7 +3,7 @@
 if [ ! -d ~/.tmux ]
 then
   git clone https://github.com/gpakosz/.tmux.git ~/.tmux
-  ln -sf .tmux/.tmux.conf
+  ln -sf ~/.tmux/.tmux.conf ~/.tmux.conf
 fi
 
 if (( ! $+commands[tmuxinator] ))
