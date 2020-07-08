@@ -5,5 +5,6 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
   unset EXTPATH
 }
 
+[ -d /snap/bin ] && export PATH="/snap/bin:$PATH"
 [ -d $HOME/bin ] && export PATH="$HOME/bin:$PATH"
 [ -d $HOME/.local/bin ] && export PATH="$HOME/.local/bin:$PATH"
