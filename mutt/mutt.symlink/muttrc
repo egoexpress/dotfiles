@@ -141,7 +141,7 @@ set pager=builtin	# internal pager: "builtin" or e.g. "less -e"
 set postponed=+Drafts	# folder for postponed messages
 set print_command="a2psmail"		# print using a2ps to default printer
 set query_command="lbdbq %s"	# query tlr's little brothers database.
-set record=""		# Don't save a copy of outgoing messages (Fcc)
+set record="Sent"	# Don't save a copy of outgoing messages (Fcc)
 reset shell		# Take shell from /etc/passwd 
 reset tmpdir		# tmp-Dir (use compile time default)
 reset visual		# use $VISUAL as builtin editor.
@@ -380,5 +380,16 @@ color quoted green default
 color quoted1 white default
 color tilde blue default
 
+# always use SSL when connecting to a server
+set ssl_force_tls=yes
+# Don't wait to enter mailbox manually
+unset imap_passive
+# Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
+set imap_check_subscribed
+# Reduce polling frequency to a sane level
+set mail_check=60
+# And poll the current mailbox more often (not needed with IDLE in post 1.5.11)
+set timeout=10
+# Display download progress every 5K
+set net_inc=5
 
- 
