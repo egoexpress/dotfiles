@@ -58,6 +58,20 @@ git --git-dir=$DOTFILES/.git --work-tree=$DOTFILES pull -q
 # update oh-my-zsh
 git --git-dir=$HOME/.oh-my-zsh/.git --work-tree=$HOME/.oh-my-zsh pull -q
 
+# update zsh plugins
+[ -d $HOME/.zsh-custom/plugins ] && {
+  for PLUGIN in $(find $HOME/.zsh-custom/plugins -mindepth 1 -maxdepth 1 -type d); do
+    git --git-dir=${PLUGIN}/.git --work-tree=${PLUGIN} pull -q
+  done
+}
+
+# update zsh themes
+[ -d $HOME/.zsh-custom/themes ] && {
+  for THEME in $(find $HOME/.zsh-custom/themes -mindepth 1 -maxdepth 1 -type d); do
+    git --git-dir=${THEME}/.git --work-tree=${THEME} pull -q
+  done
+}
+
 # update .tmux
 git --git-dir=$HOME/.tmux/.git --work-tree=$HOME/.tmux pull -q
 
