@@ -244,11 +244,8 @@ let g:ctrlp_cmd = 'CtrlP'
 " expand behaviour like in shell
 set wildmode=longest,list
 
-" use solarized colorscheme (with transparent terminal background)
 set background=dark
-let g:solarized_termtrans=1
-let g:solarized_degrade=1
-colorscheme solarized
+colorscheme gruvbox
 
 set shortmess=a
 set cmdheight=2
