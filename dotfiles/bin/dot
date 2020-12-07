@@ -7,7 +7,16 @@
 
 # set -e
 
+_git_update_dir () {
+  _WORKING_DIR="$1"
 
+  [ -d ${_WORKING_DIR} ] && {
+    for _SUBDIR in $(find ${_WORKING_DIR} -mindepth 1 -maxdepth 1 -type d); do
+      git --git-dir=${_SUBDIR}/.git --work-tree=${_SUBDIR} pull -q
+    done
+  }
+  unset _WORKING_DIR _SUBDIR
+}
 
 export DOTFILES=$HOME/.dotfiles
 
@@ -59,21 +68,16 @@ git --git-dir=$DOTFILES/.git --work-tree=$DOTFILES pull -q
 git --git-dir=$HOME/.oh-my-zsh/.git --work-tree=$HOME/.oh-my-zsh pull -q
 
 # update zsh plugins
-[ -d $HOME/.zsh-custom/plugins ] && {
-  for PLUGIN in $(find $HOME/.zsh-custom/plugins -mindepth 1 -maxdepth 1 -type d); do
-    git --git-dir=${PLUGIN}/.git --work-tree=${PLUGIN} pull -q
-  done
-}
+_git_update_dir $HOME/.zsh-custom/plugins
 
 # update zsh themes
-[ -d $HOME/.zsh-custom/themes ] && {
-  for THEME in $(find $HOME/.zsh-custom/themes -mindepth 1 -maxdepth 1 -type d); do
-    git --git-dir=${THEME}/.git --work-tree=${THEME} pull -q
-  done
-}
+_git_update_dir $HOME/.zsh-custom/themes
 
 # update .tmux
 git --git-dir=$HOME/.tmux/.git --work-tree=$HOME/.tmux pull -q
+
+# update tmux plugins
+_git_update_dir $HOME/.tmux-plugins
 
 # run platform-specific updates
 update

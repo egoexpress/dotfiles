@@ -417,4 +417,7 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 
+set -g @plugin 'tmux-plugins/tmux-gruvbox'
+set -g @tmux-gruvbox 'light'
+
 run '~/.tmux-plugins/tpm/tpm'
