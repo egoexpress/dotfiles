@@ -20,5 +20,6 @@ fi
 if [ ! -d ~/.tmux-plugins ]; then
   mkdir ~/.tmux-plugins
   git clone https://github.com/tmux-plugins/tpm ~/.tmux-plugins/tpm
+  git clone https://github.com/egel/tmux-gruvbox.git ~/.tmux-plugins/tmux-gruvbox
   ln -s ~/.tmux-plugins ~/.tmux/plugins
 fi
