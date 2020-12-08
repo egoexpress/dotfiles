@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# exit silently if not on Linux
+[ -x /usr/bin/lsb_release ] || exit 0
+
 _DIST="$(lsb_release -is)"
 
 [ "$_DIST" = "Ubuntu" ] && {
