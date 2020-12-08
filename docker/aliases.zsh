@@ -42,6 +42,8 @@
   dcu() {
     _check_for_docker_compose_file || return 1
 
+    [ -d .git ] && git pull -q
+
     _DC_FILES=""
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
     docker-compose pull --ignore-pull-failures --quiet
