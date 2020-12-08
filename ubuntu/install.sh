@@ -6,9 +6,9 @@
 _DIST="$(lsb_release -is)"
 
 [ "$_DIST" = "Ubuntu" ] && {
-  if ! $(ls /etc/apt/sources.list.d/neovim-ppa* >/dev/null 2>&1); then
-    sudo add-apt-repository ppa:neovim-ppa/unstable
-    sudo apt-get install neovim
+  if ! $(find /etc/apt/sources.list.d -name "neovim-ppa*" | grep -q "."); then
+    sudo add-apt-repository -yu ppa:neovim-ppa/unstable
+    sudo apt-get install -y neovim
   fi
 }
 
