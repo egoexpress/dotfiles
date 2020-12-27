@@ -61,6 +61,7 @@ plugins=(
   autojump
   fzf
   ripgrep
+  zsh-autosuggestions
 )
 
 . $ZSH/oh-my-zsh.sh >/dev/null 2>&1

@@ -31,6 +31,10 @@ then
   git clone https://github.com/zsh-users/zsh-completions ${ZSH_PLUGINS}/zsh-completions
 fi
 
+if [ ! -d ${ZSH_PLUGINS}/zsh-autosuggestions ]
+then
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_PLUGINS}/zsh-autosuggestions
+fi
 
 if [ ! -d ${ZSH_THEMES}/powerlevel10k ]
 then
