@@ -42,3 +42,8 @@ if (( ! $+commands[bat] ))
 then
   install_tool bat
 fi
+
+if (( ! $+commands[vifm] ))
+then
+  install_tool vifm
+fi
