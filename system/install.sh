@@ -1,28 +1,26 @@
 #!/usr/bin/env zsh
 
-if (( ! $+commands[autojump] ))
-then
-  install_tool autojump
-fi
+install_if_not_present() {
+  TOOLNAME=$1
+  if (( ! $+commands[${TOOLNAME}] ))
+  then
+    install_tool ${TOOLNAME}
+  fi
+  unset TOOLNAME
+}
 
-if (( ! $+commands[grc] ))
-then
-  install_tool grc
-fi
+install_if_not_present autojump
+install_if_not_present grc
+install_if_not_present curl
+install_if_not_present ncdu
+install_if_not_present peco
+install_if_not_present bat
+install_if_not_present vifm
+install_if_not_present broot
 
 if (( ! $+commands[glances] ))
 then
   install_tool ${GLANCES_PKGNAME}
-fi
-
-if (( ! $+commands[curl] ))
-then
-  install_tool curl
-fi
-
-if (( ! $+commands[ncdu] ))
-then
-  install_tool ncdu
 fi
 
 if (( ! $+commands[gpg] ))
@@ -31,19 +29,4 @@ then
   # see https://stackoverflow.com/a/52881198
   install_tool gnupg2
   install_tool pass
-fi
-
-if (( ! $+commands[peco] ))
-then
-  install_tool peco
-fi
-
-if (( ! $+commands[bat] ))
-then
-  install_tool bat
-fi
-
-if (( ! $+commands[vifm] ))
-then
-  install_tool vifm
 fi
