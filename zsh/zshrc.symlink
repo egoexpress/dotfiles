@@ -165,3 +165,5 @@ export TERM=xterm-256color
 
 # load fzf key bindings and completions
 source ${DOTFILES}/zsh/fzf.zsh
+
+source /home/wonder/.config/broot/launcher/bash/br
