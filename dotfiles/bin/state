@@ -17,3 +17,8 @@ if [ -d ~/development ]; then
   print -P "› %F{208}state of ~/development%f"
   git-find-dirty-repos ~/development
 fi
+
+if [ -d ~/config ]; then
+  print -P "› %F{208}state of ~/confg%f"
+  git-find-dirty-repos ~/config
+fi

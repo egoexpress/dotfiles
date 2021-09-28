@@ -79,6 +79,9 @@ git --git-dir=$HOME/.tmux/.git --work-tree=$HOME/.tmux pull -q
 # update tmux plugins
 _git_update_dir $HOME/.tmux-plugins
 
+# update config files
+_git_update_dir $HOME/config
+
 # run platform-specific updates
 update
 
