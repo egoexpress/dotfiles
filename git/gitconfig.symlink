@@ -48,3 +48,5 @@
    default = simple
 [credential]
 	helper = store
+[http]
+	sslVerify = false
