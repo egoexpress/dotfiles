@@ -11,7 +11,7 @@ alias -g T='| tail'
 alias -g C='| cat'
 
 # perform speedtest
-alias speedtest="wget -q --no-check-certificate -O - https://raw.github.com/sivel/speedtest-cli/master/speedtest.py | python"
+alias speedtest="wget -q --no-check-certificate -O - https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python"
 
 # scan subnet
 # e.g.: snscan 192.168.42.0/24
