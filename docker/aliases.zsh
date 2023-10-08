@@ -143,7 +143,7 @@
 
   docker-upgrade-db() {
     [ -r docker-compose.override.yml ] && {
-      MYSQL_ROOT_PWD=`cat docker-compose.override.yml | grep MYSQL_ROOT_PASSWORD | awk -F"=" '{print $2}'`
+      MYSQL_ROOT_PASSWORD=$(grep MYSQL_ROOT_PASSWORD docker-compose.override.yml | awk -F"=" '{print $2}')
       DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
       docker exec -it ${DC_PROJECT}-db-1 mariadb-upgrade -u root --password=${MYSQL_ROOT_PASSWORD} ${DC_PROJECT}
     }
