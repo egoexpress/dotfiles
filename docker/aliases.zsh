@@ -140,4 +140,13 @@
   docker-container-vol() {
     grc docker ps -a --format "{{.Names}}" --filter volume=${1}
   }
+
+  docker-upgrade-db() {
+    [ -r docker-compose.override.yml ] && {
+      MYSQL_ROOT_PWD=`cat docker-compose.override.yml | grep MYSQL_ROOT_PASSWORD | awk -F"=" '{print $2}'`
+      DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
+      docker exec -it ${DC_PROJECT}-db-1 mariadb-upgrade -u root --password=${MYSQL_ROOT_PASSWORD} ${DC_PROJECT}
+    }
+  }
+
 }
