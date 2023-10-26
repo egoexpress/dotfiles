@@ -46,14 +46,14 @@
 
     _DC_FILES=""
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
-    docker-compose pull --ignore-pull-failures --quiet
+    docker compose pull --ignore-pull-failures --quiet
     [ -r ${PWD}/docker-compose.local.yml ] && {
       _DC_FILES="-f docker-compose.local.yml -f docker-compose.yml"
     }
     [ -r ${PWD}/startup.sh ] && {
       . ${PWD}/startup.sh
     }
-    docker-compose ${_DC_FILES} -p ${_DC_PROJECT} up -d
+    docker compose ${_DC_FILES} -p ${_DC_PROJECT} up -d
     unset _DC_PROJECT _DC_FILES
   }
 
@@ -63,7 +63,7 @@
     _check_for_docker_compose_file || return 1
 
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
-    docker-compose -p ${_DC_PROJECT} stop
+    docker compose -p ${_DC_PROJECT} stop
     unset _DC_PROJECT
   }
 
@@ -73,7 +73,7 @@
     _check_for_docker_compose_file || return 1
 
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
-    docker-compose -p ${_DC_PROJECT} logs $*
+    docker compose -p ${_DC_PROJECT} logs $*
     unset _DC_PROJECT
   }
 
@@ -83,7 +83,7 @@
     _check_for_docker_compose_file || return 1
 
     _SERVICE_NAME=$(docker-compose config --services)
-    docker-compose run --rm ${_SERVICE_NAME} $*
+    docker compose run --rm ${_SERVICE_NAME} $*
 
     unset _SERVICE_NAME
   }
