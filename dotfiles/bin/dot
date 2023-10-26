@@ -88,7 +88,7 @@ update
 cd ~/.dotfiles
 which brew >/dev/null 2>&1 && {
   brew update && brew upgrade
-  brew cleanup
+  brew cleanup -s --prune=all
 }
 cd - > /dev/null
 
