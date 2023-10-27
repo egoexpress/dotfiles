@@ -167,3 +167,5 @@ export TERM=xterm-256color
 source ${DOTFILES}/zsh/fzf.zsh
 
 [[ ! -f ~/.config/broot/launcher/bash/br ]] || source ~/.config/broot/launcher/bash/br
+
+source /home/wonder/.config/broot/launcher/bash/br

@@ -32,3 +32,10 @@ if (( $+commands[bat] ))
 then
   alias cat='bat'
 fi
+
+# use bat instead of cat (batcat version for Ubuntu)
+if (( $+commands[batcat] ))
+then
+  alias cat='batcat'
+fi
+

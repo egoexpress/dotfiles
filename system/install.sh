@@ -17,6 +17,11 @@ install_if_not_present peco
 install_if_not_present bat
 install_if_not_present vifm
 install_if_not_present broot
+install_if_not_present ack
+install_if_not_present hstr
+install_if_not_present gh
+install_if_not_present ghq
+install_if_not_present gcc
 
 if (( ! $+commands[glances] ))
 then
