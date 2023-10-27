@@ -413,11 +413,9 @@ bind -n C-\\ run "(tmux display-message -p '#{pane_current_command}' | grep -iq 
 # disable auto-rename
 set-option -g allow-rename off
 
-set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 
-set -g @plugin 'tmux-plugins/tmux-gruvbox'
-set -g @tmux-gruvbox 'light'
+#set -g @plugin 'tmux-plugins/tmux-gruvbox'
+#set -g @tmux-gruvbox 'light'
 
-run '~/.tmux-plugins/tpm/tpm'
