@@ -27,6 +27,6 @@ fi
 get_git_state ~/development
 
 if [ -d ~/config ]; then
-  print -P "› %F{208}state of ~/confg%f"
+  print -P "› %F{208}state of ~/config%f"
   git-find-dirty-repos ~/config
 fi
