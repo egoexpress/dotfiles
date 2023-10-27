@@ -2,6 +2,17 @@
 
 . ~/.dotfiles/git/aliases.zsh
 
+get_git_state() {
+  TARGET_DIR="$1"
+
+  if [ -d ${TARGET_DIR} ]; then
+    print -P "› %F{208}state of ${TARGET_DIR}%f"
+    for SUBDIR in $(find ${TARGET_DIR} -maxdepth 1 ! -path ${TARGET_DIR} -type d); do
+      git-find-dirty-repos ${SUBDIR}
+    done
+  fi
+}
+
 print -P "› %F{208}state of .dotfiles%f"
 git --git-dir=${DOTFILES}/.git --work-tree=${DOTFILES} status -s
 [ $(git --git-dir=${DOTFILES}/.git log @{push}.. | wc -l) -eq 0 ] || print -P "  %F{207}local changes to push%f"
@@ -13,10 +24,7 @@ if [ -d ~/.private/.git ]; then
   [ $(git --git-dir=${WORKING_DIR}/.git log @{push}.. | wc -l) -eq 0 ] || print -P "  %F{207}local changes to push%f"
 fi
 
-if [ -d ~/development ]; then
-  print -P "› %F{208}state of ~/development%f"
-  git-find-dirty-repos ~/development
-fi
+get_git_state ~/development
 
 if [ -d ~/config ]; then
   print -P "› %F{208}state of ~/confg%f"

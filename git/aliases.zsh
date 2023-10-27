@@ -87,19 +87,37 @@ git-shrink-repo () {
 alias gbv='git branch -vv'
 alias gll='glo | head -10; true'
 
+git-show-pending-pushes() {
+  TARGET_DIR=.
+  [ -z $1 ] || TARGET_DIR=$1
+
+  BRANCH=$(git branch --show-current)
+  REMOTE=$(git remote show)
+  if [ ! -z ${REMOTE} ]; then
+    CHANGES=$(git log origin/${BRANCH}..${BRANCH} | wc -l )
+    if [ ${CHANGES} -gt 0 ]; then
+      print -P " %F{42}>%f $TARGET_DIR"
+    fi
+  else
+    print -P " %F{65}@%f $TARGET_DIR"
+  fi
+}
+
 git-find-dirty-repos () {
 
   TARGET_DIR=.
   [ -z $1 ] || TARGET_DIR=$1
 
-
 	for SUBDIR in $(find ${TARGET_DIR} -maxdepth 1 ! -path ${TARGET_DIR} -type d); do
 		cd $SUBDIR
+    DISPLAYDIR=$(echo $SUBDIR | sed "s|${HOME}|~|g")
 		if [[ -d .git ]]; then
 			if ! [[ -z $(git status -s) ]]; then
-        DISPLAYDIR=$(echo $SUBDIR | sed "s|${HOME}|~|g")
 				print -P " %F{red}M%f $DISPLAYDIR"
 			fi
+      git-show-pending-pushes $SUBDIR
+    else
+			print -P " %F{32}?%f $DISPLAYDIR"
 		fi
 		cd - >/dev/null
 	done
