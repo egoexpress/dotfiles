@@ -22,6 +22,7 @@ install_if_not_present hstr
 install_if_not_present gh
 install_if_not_present ghq
 install_if_not_present gcc
+install_if_not_present eza
 
 if (( ! $+commands[glances] ))
 then

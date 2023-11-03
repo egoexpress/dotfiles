@@ -31,6 +31,7 @@
   editor = vim
   autocrlf = input
   whitespace = warn
+  pager = delta
 
 [apply]
   whitespace = nowarn
@@ -57,4 +58,18 @@
 	defaultBranch = main
 
 [pull]
-	rebase = false
+  rebase = false
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false
+  side-by-side = true
+
+[merge]
+  conflictstyle = diff3
+
+[diff]
+  colorMoved = default

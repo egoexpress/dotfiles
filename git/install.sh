@@ -6,3 +6,5 @@ then
     brew install hub 
   fi
 fi
+
+install_if_not_present git-delta

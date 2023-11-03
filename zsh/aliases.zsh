@@ -1,5 +1,4 @@
 alias reload!='. ~/.zshrc'
-alias ll='ls -lAhL'
 
 # https://unix.stackexchange.com/questions/326911/make-and-source-default-to-zshrc/326948#326948
 _accept-line() {
@@ -10,3 +9,12 @@ _accept-line() {
 }
 
 zle -N accept-line _accept-line
+
+if (( $+commands[eza] ))
+then
+  alias ls="eza"
+  alias lss="eza -alh --icons --git-ignore"
+  alias ll='ls -lAh'
+else
+  alias ll='ls -lAhL'
+fi
