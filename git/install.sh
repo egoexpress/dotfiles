@@ -7,4 +7,7 @@ then
   fi
 fi
 
-install_tool git-delta
+if (( ! $+commands[delta] ))
+then
+  install_tool git-delta
+fi
