@@ -7,4 +7,4 @@ then
   fi
 fi
 
-install_if_not_present git-delta
+install_tool git-delta
