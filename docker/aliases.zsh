@@ -1,6 +1,11 @@
 [ -r /usr/bin/docker ] && {
+  
   # only alias on MacOSX (use group 'docker' on Linux)
-  [ `uname` = "Darwin" ] && alias docker="sudo docker"
+  if [ `uname` = "Darwin" ]; then
+    DOCKER_BINARY="sudo /usr/bin/docker"
+  else
+    DOCKER_BINARY="/usr/bin/docker"
+  fi
 
   # wrapper for 'docker ps'
   # pretty-print output
@@ -8,7 +13,7 @@
     _FILTER="$1"
     [ $# -gt 1 ] && shift
     [ "${_FILTER}" != "" ] && _FORMAT="--filter=${_FILTER}"
-    grc --colour=auto docker ps --format "table {{.ID}}	{{.Names}}	{{.Image}}	{{.Status}}	{{.RunningFor}}" ${_FORMAT} $*
+    grc --colour=auto ${DOCKER_BINARY} ps --format "table {{.ID}}	{{.Names}}	{{.Image}}	{{.Status}}	{{.RunningFor}}" ${_FORMAT} $*
     unset _FILTER _FORMAT
   }
 
@@ -20,7 +25,7 @@
 
   # wrapper for 'docker exec -it <container> /bin/bash'
   db() {
-    docker exec -it "${1}" /bin/bash
+    ${DOCKER_BINARY} exec -it "${1}" /bin/bash
   }
 
   # helper function
@@ -46,14 +51,14 @@
 
     _DC_FILES=""
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
-    docker compose pull --ignore-pull-failures --quiet
+    ${DOCKER_BINARY} compose pull --ignore-pull-failures --quiet
     [ -r ${PWD}/docker-compose.local.yml ] && {
       _DC_FILES="-f docker-compose.local.yml -f docker-compose.yml"
     }
     [ -r ${PWD}/startup.sh ] && {
       . ${PWD}/startup.sh
     }
-    docker compose ${_DC_FILES} -p ${_DC_PROJECT} up -d
+    ${DOCKER_BINARY} compose ${_DC_FILES} -p ${_DC_PROJECT} up -d
     unset _DC_PROJECT _DC_FILES
   }
 
@@ -63,7 +68,7 @@
     _check_for_docker_compose_file || return 1
 
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
-    docker compose -p ${_DC_PROJECT} stop
+    ${DOCKER_BINARY} compose -p ${_DC_PROJECT} stop
     unset _DC_PROJECT
   }
 
@@ -73,7 +78,7 @@
     _check_for_docker_compose_file || return 1
 
     _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
-    docker compose -p ${_DC_PROJECT} logs $*
+    ${DOCKER_BINARY} compose -p ${_DC_PROJECT} logs $*
     unset _DC_PROJECT
   }
 
@@ -83,7 +88,7 @@
     _check_for_docker_compose_file || return 1
 
     _SERVICE_NAME=$(docker-compose config --services)
-    docker compose run --rm ${_SERVICE_NAME} $*
+    ${DOCKER_BINARY} compose run --rm ${_SERVICE_NAME} $*
 
     unset _SERVICE_NAME
   }
@@ -96,9 +101,9 @@
       _DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
     }
 
-    for volume in $(docker volume ls -qf name=${_DC_PROJECT}_); do
+    for volume in $(${DOCKER_BINARY} volume ls -qf name=${_DC_PROJECT}_); do
       echo -n "Backing up volume ${volume}..."
-      docker run -v ${volume}:/volume -v /tmp:/backup --rm loomchild/volume-backup backup ${volume}
+      ${DOCKER_BINARY} run -v ${volume}:/volume -v /tmp:/backup --rm loomchild/volume-backup backup ${volume}
       echo 'done.'
     done
 
@@ -125,28 +130,27 @@
     for FILE in $(ls --color=never *.tar.bz2); do
       _VOLUME_NAME=$(echo $FILE | sed "s/.tar.bz2//")
       echo -n "Restoring volume ${_VOLUME_NAME}..."
-      docker run -v ${_VOLUME_NAME}:/volume -v ${_UNPACKDIR}:/backup --rm loomchild/volume-backup restore ${_VOLUME_NAME}
+      ${DOCKER_BINARY} run -v ${_VOLUME_NAME}:/volume -v ${_UNPACKDIR}:/backup --rm loomchild/volume-backup restore ${_VOLUME_NAME}
       echo 'done.'
     done
     cd - >/dev/null
     rm -rf ${_UNPACKDIR}
   }
 
-  alias docker-system-prune='docker system prune -a --volumes -f'
-  alias dim='grc docker images'
+  alias docker-system-prune='${DOCKER_BINARY} system prune -a --volumes -f'
+  alias dim='grc ${DOCKER_BINARY} images'
 
   # get container name(s) a volume is bound to
   # https://stackoverflow.com/questions/42857575/how-to-determine-what-containers-use-the-docker-volume
   docker-container-vol() {
-    grc docker ps -a --format "{{.Names}}" --filter volume=${1}
+    grc ${DOCKER_BINARY} ps -a --format "{{.Names}}" --filter volume=${1}
   }
 
   docker-upgrade-db() {
     [ -r docker-compose.override.yml ] && {
       MYSQL_ROOT_PASSWORD=$(grep MYSQL_ROOT_PASSWORD docker-compose.override.yml | awk -F"=" '{print $2}')
       DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
-      docker exec -it ${DC_PROJECT}-db-1 mariadb-upgrade -u root --password=${MYSQL_ROOT_PASSWORD} ${DC_PROJECT}
+      ${DOCKER_BINARY} exec -it ${DC_PROJECT}-db-1 mariadb-upgrade -u root --password=${MYSQL_ROOT_PASSWORD} ${DC_PROJECT}
     }
   }
-
 }
