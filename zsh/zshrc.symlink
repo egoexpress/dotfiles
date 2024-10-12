@@ -18,7 +18,8 @@ export LC_CTYPE="en_US.UTF-8"
 setopt alias_func_def 2>/dev/null
 
 # zsh theme
-ZSH_THEME=powerlevel10k/powerlevel10k
+# ZSH_THEME=powerlevel10k/powerlevel10k
+ZSH_THEME="spaceship"
 
 # use hyphen-insensitive completion
 HYPHEN_INSENSITIVE="true"
@@ -67,6 +68,8 @@ plugins=(
 
 . $ZSH/oh-my-zsh.sh >/dev/null 2>&1
 
+eval "$(starship init zsh)"
+#
 # path to dotfiles
 export DOTFILES="$HOME/.dotfiles"
 
@@ -168,4 +171,7 @@ source ${DOTFILES}/zsh/fzf.zsh
 
 [[ ! -f ~/.config/broot/launcher/bash/br ]] || source ~/.config/broot/launcher/bash/br
 
-source /home/wonder/.config/broot/launcher/bash/br
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
