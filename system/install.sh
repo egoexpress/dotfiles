@@ -4,7 +4,10 @@ install_if_not_present() {
   TOOLNAME=$1
   if (( ! $+commands[${TOOLNAME}] ))
   then
-    install_tool ${TOOLNAME}
+    if (( $(which ${TOOLNAME} >/dev/null 2>&1) ))
+    then
+      install_tool ${TOOLNAME}
+    fi
   fi
   unset TOOLNAME
 }
