@@ -6,19 +6,23 @@ get_git_state() {
   TARGET_DIR="$1"
 
   if [ -d ${TARGET_DIR} ]; then
-    print -P "› %F{208}state of ${TARGET_DIR}%f"
+    # format DISPLAY_DIR to replace $HOME with ~
+    # source: https://stackoverflow.com/questions/10036255/is-there-a-good-way-to-replace-home-directory-with-tilde-in-bash
+    DISPLAY_DIR="${TARGET_DIR}"
+    [[ "$DISPLAY_DIR" =~ ^"$HOME"(/|$) ]] && DISPLAY_DIR="~${DISPLAY_DIR#$HOME}"
+    print -P "› %F{208}state of ${DISPLAY_DIR}%f"
     for SUBDIR in $(find ${TARGET_DIR} -maxdepth 1 ! -path ${TARGET_DIR} -type d); do
       git-find-dirty-repos ${SUBDIR}
     done
   fi
 }
 
-print -P "› %F{208}state of .dotfiles%f"
+print -P "› %F{208}state of ~/.dotfiles%f"
 git --git-dir=${DOTFILES}/.git --work-tree=${DOTFILES} status -s
 [ $(git --git-dir=${DOTFILES}/.git log @{push}.. | wc -l) -eq 0 ] || print -P "  %F{207}local changes to push%f"
 
 if [ -d ~/.private/.git ]; then
-  print -P "› %F{208}state of .private%f"
+  print -P "› %F{208}state of ~/.private%f"
   WORKING_DIR=${HOME}/.private
   git --git-dir=${WORKING_DIR}/.git --work-tree=${WORKING_DIR} status -s
   [ $(git --git-dir=${WORKING_DIR}/.git log @{push}.. | wc -l) -eq 0 ] || print -P "  %F{207}local changes to push%f"
