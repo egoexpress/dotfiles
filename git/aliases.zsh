@@ -3,7 +3,9 @@
 if (( $+commands[hub] ))
 then
   hub_path=$(which hub)
-  alias git=$hub_path
+  if $(hub --version); then
+    alias git=$hub_path
+  fi
 fi
 
 # The rest of my fun git aliases
