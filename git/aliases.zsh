@@ -93,7 +93,8 @@ git-show-pending-pushes() {
   TARGET_DIR=.
   [ -z $1 ] || TARGET_DIR=$1
 
-  BRANCH=$(git branch --show-current)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
+  # BRANCH=$(git branch --show-current)
   REMOTE=$(git remote show)
   if [ ! -z ${REMOTE} ]; then
     CHANGES=$(git log origin/${BRANCH}..${BRANCH} | wc -l )
