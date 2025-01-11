@@ -7,22 +7,6 @@
     DOCKER_BINARY="/usr/bin/docker"
   fi
 
-  # wrapper for 'docker ps'
-  # pretty-print output
-  dps () {
-    _FILTER="$1"
-    [ $# -gt 1 ] && shift
-    [ "${_FILTER}" != "" ] && _FORMAT="--filter=${_FILTER}"
-    grc --colour=auto ${DOCKER_BINARY} ps --format "table {{.ID}}	{{.Names}}	{{.Image}}	{{.Status}}	{{.RunningFor}}" ${_FORMAT} $*
-    unset _FILTER _FORMAT
-  }
-
-  # wrapper for 'docker ps -a'
-  # pretty-print output
-  dpa() {
-    dps "$1" -a
-  }
-
   # wrapper for 'docker exec -it <container> /bin/bash'
   db() {
     ${DOCKER_BINARY} exec -it "${1}" /bin/bash
