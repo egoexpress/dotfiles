@@ -138,3 +138,6 @@
     }
   }
 }
+
+alias dps='docker ps' 
+alias dpa='docker ps -a'
