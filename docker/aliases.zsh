@@ -134,7 +134,7 @@
     [ -r docker-compose.override.yml ] && {
       MYSQL_ROOT_PASSWORD=$(grep -E -i 'MARIADB_ROOT_PASSWORD|MYSQL_ROOT_PASSWORD' docker-compose.override.yml | awk -F"=" '{print $2}')
       DC_PROJECT=$(basename $PWD | awk -F- '{ print $NF}')
-      ${DOCKER_BINARY} exec -it ${DC_PROJECT}-db-1 mariadb-upgrade -u root --password=${MYSQL_ROOT_PASSWORD} ${DC_PROJECT}
+      ${DOCKER_BINARY} exec -it ${DC_PROJECT}-db-1 mariadb-upgrade -u root -h localhost --password=${MYSQL_ROOT_PASSWORD} ${DC_PROJECT}
     }
   }
 }
