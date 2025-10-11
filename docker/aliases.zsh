@@ -141,3 +141,4 @@
 
 alias dps='docker ps' 
 alias dpa='docker ps -a'
+alias dimp='docker image prune -a --force'
