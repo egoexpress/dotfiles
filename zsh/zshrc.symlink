@@ -30,8 +30,6 @@ plugins=(
   compleat
   history
   mosh
-  tmux
-  tmuxinator
   pip
   python
   virtualenv
@@ -159,6 +157,8 @@ source ${DOTFILES}/zsh/fzf.zsh
 [[ ! -f ~/.config/broot/launcher/bash/br ]] || source ~/.config/broot/launcher/bash/br
 
 # load starship as prompt theme
+precmd() { }
+unset precmd_functions
 eval "$(starship init zsh)"
 
 export NVM_DIR="$HOME/.nvm"
