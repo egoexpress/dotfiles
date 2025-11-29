@@ -139,6 +139,6 @@
   }
 }
 
-alias dps='docker ps' 
-alias dpa='docker ps -a'
+alias dps="docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Command}}\t{{.Status}}\t{{.Names}}'"
+alias dpa='dps -a'
 alias dimp='docker image prune -a --force'
