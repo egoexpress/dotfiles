@@ -40,3 +40,6 @@ if [ ! -d ${ZSH_THEMES}/powerlevel10k ]
 then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_THEMES}/powerlevel10k
 fi
+
+install_tool rg
+brew install -q fzf
